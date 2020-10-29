@@ -19,7 +19,6 @@ package org.optaplanner.examples.machinereassignment.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 import org.optaplanner.examples.common.domain.AbstractPersistable;
 
@@ -70,11 +69,7 @@ public class MrProcess extends AbstractPersistable {
     }
 
     public long getUsage(MrResource resource) {
-        Long usage = usageMap.get(resource);
-        if (usage == null) {
-            throw new NoSuchElementException();
-        }
-        return usage;
+        return usageMap.getOrDefault(resource, 0L);
     }
 
     public int getUsageMultiplicand() {
